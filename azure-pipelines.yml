@@ -31,3 +31,10 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
+    
+- task: CopyPublishBuildArtifacts@1
+  inputs:
+        CopyRoot: '$(Agent.BuildDirectory)'
+        Contents: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'CI-Artifacts'
+        ArtifactType: 'Container'

@@ -31,7 +31,13 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '''$(agent.builddirectory)'''
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)\UnitTests'
+    flattenFolders: true
 - task: CopyPublishBuildArtifacts@1
   inputs:
         CopyRoot: '$(Agent.BuildDirectory)'

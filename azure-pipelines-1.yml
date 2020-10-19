@@ -37,3 +37,10 @@ steps:
   inputs:
     testResultsFormat: 'XUnit'
     testResultsFiles: '**/TEST-*.xml'
+    
+- task: CopyPublishBuildArtifacts@1
+  inputs:
+        CopyRoot: '$(Agent.BuildDirectory)'
+        Contents: '''$(build.artifactstagingdirectory)'''
+        ArtifactName: '''$(Parameters.ArtifactName)'''
+        ArtifactType: 'FilePath'

@@ -10,6 +10,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet 5.0.0'
+  inputs:
+    versionSpec: 5.0.0
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Parameters.solution)'    
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
